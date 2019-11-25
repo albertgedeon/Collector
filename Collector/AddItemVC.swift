@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class AddItemVC:UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
     @IBOutlet weak var titleTextField:UITextField?;
     @IBOutlet weak var descriptionTextView:UITextView?;
     @IBOutlet weak var ratingPicker:UIPickerView?;
@@ -17,11 +18,28 @@ class AddItemVC:UIViewController, UITextFieldDelegate, UIPickerViewDataSource, U
     @IBOutlet weak var imageView:UIImageView?;
     
     var currentCategory:Category?;
+    var model:Model?;
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         titleTextField?.becomeFirstResponder();
-//        self.addButton?.isEnabled = false;
+        self.addButton?.isEnabled = self.checkForCompleteEntry();
+    }
+    
+    func checkForCompleteEntry() -> Bool {
+        if self.titleTextField?.text?.count ?? 0 == 0 {
+            return false;
+        }
+        
+        if self.descriptionTextView?.text.count == 0 {
+            return false;
+        }
+        
+        if self.imageView?.image == nil {
+            return false;
+        }
+        
+        return true;
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -38,24 +56,28 @@ class AddItemVC:UIViewController, UITextFieldDelegate, UIPickerViewDataSource, U
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.descriptionTextView?.becomeFirstResponder();
+        self.addButton?.isEnabled = self.checkForCompleteEntry();
         return true;
     }
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        if text == "\n" {
-//            textView.resignFirstResponder();
-//            self.ratingPicker?.becomeFirstResponder();
-//            return false
-//        }
-//        return true
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//
-//    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        self.addButton?.isEnabled = self.checkForCompleteEntry();
+        
+        if text == "\n" {
+            textView.resignFirstResponder();
+            self.ratingPicker?.becomeFirstResponder();
+            return false
+        }
+        return true
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.addButton?.isEnabled = self.checkForCompleteEntry();
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil);
+        self.addButton?.isEnabled = self.checkForCompleteEntry();
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -65,19 +87,30 @@ class AddItemVC:UIViewController, UITextFieldDelegate, UIPickerViewDataSource, U
         }
         
         self.imageView?.image = image;
+        
+        self.addButton?.isEnabled = self.checkForCompleteEntry();
 
         picker.dismiss(animated: true, completion: nil);
     }
     
     @IBAction func selectImageButtonPressed(_ sender: Any){
         let imagePicker = UIImagePickerController();
-        imagePicker.sourceType = .camera;
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary;
         imagePicker.allowsEditing = true;
         imagePicker.delegate = self;
         self.present(imagePicker, animated: true, completion: nil);
     }
     
     @IBAction func addItemToCategory(_ sender: Any){
-        
+        if self.checkForCompleteEntry(){
+            if let itemTitle = self.titleTextField?.text,
+                let itemDescription = self.descriptionTextView?.text,
+                let itemRating = self.ratingPicker?.selectedRow(inComponent: 0),
+                let itemImage = self.imageView?.image{
+                    let newItem = Item(title: itemTitle, description: itemDescription, rating: itemRating, image: itemImage);
+                    model?.addItemToCategory(category: &self.currentCategory!, item: newItem);
+                    self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 }

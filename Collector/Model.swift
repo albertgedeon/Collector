@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Category {
+class Category {
     var name:String;
     var items = [Item]();
     
@@ -24,6 +24,13 @@ struct Item{
     var rating:Int = 0;
     var photoURL:URL?;
     var image:UIImage?;
+    
+    init(title: String, description:String, rating:Int, image:UIImage){
+        self.title = title;
+        self.description = description;
+        self.rating = rating;
+        self.image = image;
+    }
 }
 
 class Model{

@@ -11,6 +11,13 @@ import UIKit
 
 class ItemsTVC: UITableViewController{
     var currentCategory:Category?;
+    var model:Model?;
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        print("Number Of Items \(currentCategory?.items.count)");
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentCategory?.items.count ?? 0;
@@ -29,6 +36,7 @@ class ItemsTVC: UITableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let addItemVC:AddItemVC = segue.destination as? AddItemVC {
             addItemVC.currentCategory = self.currentCategory;
+            addItemVC.model = model;
         }
     }
 }

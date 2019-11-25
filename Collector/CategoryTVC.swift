@@ -41,6 +41,7 @@ class CategoryTVC: UITableViewController, UITextFieldDelegate{
         if let indexPath = self.tableView.indexPath(for: sender as! UITableViewCell){
             if let itemTVC:ItemsTVC = segue.destination as? ItemsTVC {
                 itemTVC.currentCategory = model.currentCategories[indexPath.row];
+                itemTVC.model = model;
             }
         }
     }
