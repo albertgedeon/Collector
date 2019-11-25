@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ItemEntity" inverseName="category" inverseEntity="ItemEntity"/>
+    </entity>
+    <entity name="ItemEntity" representedClassName="ItemEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="itemDescription" optional="YES" attributeType="String"/>
+        <attribute name="photoURL" optional="YES" attributeType="URI" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="items" inverseEntity="CategoryEntity"/>
+    </entity>
+    <elements>
+        <element name="CategoryEntity" positionX="-449.3359375" positionY="33.078125" width="128" height="73"/>
+        <element name="ItemEntity" positionX="-171.86328125" positionY="-10.52734375" width="128" height="118"/>
+    </elements>
+</model>
