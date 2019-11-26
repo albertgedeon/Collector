@@ -107,7 +107,7 @@ class AddItemVC:UIViewController, UITextFieldDelegate, UIPickerViewDataSource, U
                 let itemDescription = self.descriptionTextView?.text,
                 let itemRating = self.ratingPicker?.selectedRow(inComponent: 0),
                 let itemImage = self.imageView?.image{
-                    let newItem = Item(title: itemTitle, description: itemDescription, rating: itemRating, image: itemImage);
+                    let newItem = Item(title: itemTitle, description: itemDescription, rating: itemRating + 1, image: itemImage);//need to add one since indexpath starts at 0 not 1 :)
                     model?.addItemToCategory(category: &self.currentCategory!, item: newItem);
                     self.navigationController?.popViewController(animated: true)
             }

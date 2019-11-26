@@ -19,6 +19,8 @@
 		CC3C79FC238799DB00490112 /* CollectorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3C79FB238799DB00490112 /* CollectorUITests.swift */; };
 		CC3C7A0A23879CE400490112 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7A0923879CE400490112 /* CategoryTVC.swift */; };
 		CC3C7A0C2387A59200490112 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7A0B2387A59200490112 /* Model.swift */; };
+		CC970694238CEC2F007F4A17 /* ItemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC970692238CEC2F007F4A17 /* ItemTVCell.swift */; };
+		CC970697238CF193007F4A17 /* ItemTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC970696238CF193007F4A17 /* ItemTVCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		CC3C79FD238799DB00490112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC3C7A0923879CE400490112 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		CC3C7A0B2387A59200490112 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		CC970692238CEC2F007F4A17 /* ItemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTVCell.swift; sourceTree = "<group>"; };
+		CC970696238CF193007F4A17 /* ItemTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTVCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 				CC3C79D8238799DA00490112 /* SceneDelegate.swift */,
 				CC3C7A0923879CE400490112 /* CategoryTVC.swift */,
 				CC1628B12387D85A00297344 /* ItemsTVC.swift */,
+				CC970692238CEC2F007F4A17 /* ItemTVCell.swift */,
+				CC970696238CF193007F4A17 /* ItemTVCell.xib */,
 				CC1628B32387EE0200297344 /* AddItemVC.swift */,
 				CC3C7A0B2387A59200490112 /* Model.swift */,
 				CC3C79DC238799DA00490112 /* Main.storyboard */,
@@ -244,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC970697238CF193007F4A17 /* ItemTVCell.xib in Resources */,
 				CC3C79E6238799DB00490112 /* LaunchScreen.storyboard in Resources */,
 				CC3C79E3238799DB00490112 /* Assets.xcassets in Resources */,
 				CC3C79DE238799DA00490112 /* Main.storyboard in Resources */,
@@ -275,6 +282,7 @@
 				CC3C7A0A23879CE400490112 /* CategoryTVC.swift in Sources */,
 				CC1628B22387D85A00297344 /* ItemsTVC.swift in Sources */,
 				CC3C79D7238799DA00490112 /* AppDelegate.swift in Sources */,
+				CC970694238CEC2F007F4A17 /* ItemTVCell.swift in Sources */,
 				CC3C7A0C2387A59200490112 /* Model.swift in Sources */,
 				CC3C79D9238799DA00490112 /* SceneDelegate.swift in Sources */,
 				CC1628B42387EE0200297344 /* AddItemVC.swift in Sources */,

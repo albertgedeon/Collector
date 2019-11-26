@@ -9,14 +9,18 @@
 import Foundation
 import UIKit
 
-class ItemsTVC: UITableViewController{
+class ItemsTVC: UITableViewController, ItemDelegate{
     var currentCategory:Category?;
     var model:Model?;
     
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        self.tableView.register(UINib(nibName: "ItemTVCell", bundle: Bundle.main), forCellReuseIdentifier: "ItemTVCell")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-        
-        print("Number Of Items \(currentCategory?.items.count)");
+        self.model?.itemDelegate = self;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,13 +28,19 @@ class ItemsTVC: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableViewCell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") ??
-            UITableViewCell.init(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "CategoryCell");
-        
-        if let currentItem = currentCategory?.items[indexPath.row] {
-            tableViewCell.textLabel?.text = currentItem.title;
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTVCell") as? ItemTVCell{
+            if let currentItem = currentCategory?.items[indexPath.row] {
+                cell.itemTitle?.text = currentItem.title;
+                cell.itemDescription?.text = currentItem.description;
+                print(currentItem.rating);
+                cell.itemRating?.text = "Rating: " + String(currentItem.rating);
+                cell.itemImageView?.image = currentItem.image;
+                
+                return cell;
+            }
         }
-        return tableViewCell;
+        //Should not really get here
+        return tableView.dequeueReusableCell(withIdentifier: "ItemTVCell")!;
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -38,5 +48,17 @@ class ItemsTVC: UITableViewController{
             addItemVC.currentCategory = self.currentCategory;
             addItemVC.model = model;
         }
+    }
+    
+    func itemCreated(category: Category, item: Item) {
+        self.tableView.reloadData();
+    }
+    
+    func itemUpdated(category: Category, item: Item) {
+        self.tableView.reloadData();
+    }
+    
+    func itemDeleted(categroy: Category, item: Item) {
+        self.tableView.reloadData();
     }
 }

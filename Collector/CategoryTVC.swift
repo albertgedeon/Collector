@@ -9,8 +9,14 @@
 import Foundation
 import UIKit
 
-class CategoryTVC: UITableViewController, UITextFieldDelegate{
+class CategoryTVC: UITableViewController, UITextFieldDelegate, CategoryDelegate{
+    
     let model = Model();
+    
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        model.categoryDelegate = self;
+    }
 
     @IBAction func displayAlertForNewCategory(_ sender: Any) {
         let alertController = UIAlertController.init(title: "Create Category", message: "Please enter name for Category", preferredStyle: UIAlertController.Style.alert);
@@ -24,8 +30,12 @@ class CategoryTVC: UITableViewController, UITextFieldDelegate{
         
         alertController.addAction(UIAlertAction.init(title: "Add", style: UIAlertAction.Style.default, handler: { (alertAction) in
             if let name = alertController.textFields?[0].text {
-                self.model.createCategory(name: name)
-                self.tableView.reloadData()
+                if name.count > 0 {
+                    self.model.createCategory(name: name)
+                }
+                else{
+                    self.displayErrorAlert(message: "Category Name has to contain Characters");
+                }
             }
         }));
         alertController.addAction(UIAlertAction.init(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (alertAction) in
@@ -63,5 +73,27 @@ class CategoryTVC: UITableViewController, UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true;
+    }
+    
+    func categoryCreated(category: Category) {
+        self.tableView.reloadData();
+    }
+    
+    func categoryUpdated(category: Category) {
+        self.tableView.reloadData();
+    }
+    
+    func categoryDeleted(categroy: Category) {
+        self.tableView.reloadData();
+    }
+    
+    func displayErrorAlert(message:String){
+        let alertController = UIAlertController.init(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert);
+        alertController.addAction(UIAlertAction.init(title: "Okay", style: UIAlertAction.Style.cancel, handler: { (alertAction) in
+            
+        }));
+        if let navController = self.navigationController {
+            navController.present(alertController, animated: true, completion: nil);
+        }
     }
 }

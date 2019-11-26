@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+protocol CategoryDelegate: class {
+    func categoryCreated(category:Category);
+    func categoryUpdated(category:Category);
+    func categoryDeleted(categroy:Category);
+}
+
+protocol ItemDelegate: class {
+    func itemCreated(category:Category, item:Item);
+    func itemUpdated(category:Category, item:Item);
+    func itemDeleted(categroy:Category, item:Item);
+}
+
 class Category {
     var name:String;
     var items = [Item]();
@@ -35,9 +47,13 @@ struct Item{
 
 class Model{
     var currentCategories = [Category]();
+    weak var categoryDelegate:CategoryDelegate?;
+    weak var itemDelegate:ItemDelegate?;
     
-    func createCategory(name:String) {
-        currentCategories.append(Category(name: name));
+    func createCategory(name:String){
+        let newCategory = Category(name: name);
+        currentCategories.append(newCategory);
+        self.categoryDelegate?.categoryCreated(category: newCategory);
     }
     
     func deleteCategory(categoryToDelete:Category) {
@@ -45,6 +61,7 @@ class Model{
             let currentCategory = currentCategories[index];
             if currentCategory.name == categoryToDelete.name {
                 currentCategories.remove(at: index);
+                self.categoryDelegate?.categoryDeleted(categroy: currentCategory);
                 return;
             }
         }
@@ -56,6 +73,7 @@ class Model{
     
     func addItemToCategory(category:inout Category, item:Item){
         category.items.append(item);
+        self.itemDelegate?.itemCreated(category: category, item: item);
     }
     
     func deleteItemFromCategory(category:inout Category, itemToDelete:Item){
@@ -63,6 +81,7 @@ class Model{
             let currentItem = category.items[index];
             if currentItem.title == itemToDelete.title {
                 category.items.remove(at: index);
+                self.itemDelegate?.itemDeleted(categroy: category, item: currentItem);
                 return;
             }
         }
