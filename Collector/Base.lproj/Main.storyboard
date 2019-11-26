@@ -126,7 +126,7 @@
                                                     <constraint firstAttribute="height" constant="34" id="aic-bW-ljZ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="mcH-vh-ojS" id="8Pr-XZ-P3E"/>
                                                 </connections>
@@ -148,7 +148,7 @@
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="mcH-vh-ojS" id="YQu-II-VcE"/>
                                                 </connections>
