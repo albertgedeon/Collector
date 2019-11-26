@@ -32,7 +32,6 @@ class ItemsTVC: UITableViewController, ItemDelegate{
             if let currentItem = currentCategory?.items[indexPath.row] {
                 cell.itemTitle?.text = currentItem.title;
                 cell.itemDescription?.text = currentItem.description;
-                print(currentItem.rating);
                 cell.itemRating?.text = "Rating: " + String(currentItem.rating);
                 cell.itemImageView?.image = currentItem.image;
                 

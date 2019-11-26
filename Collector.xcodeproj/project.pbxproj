@@ -21,6 +21,7 @@
 		CC3C7A0C2387A59200490112 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3C7A0B2387A59200490112 /* Model.swift */; };
 		CC970694238CEC2F007F4A17 /* ItemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC970692238CEC2F007F4A17 /* ItemTVCell.swift */; };
 		CC970697238CF193007F4A17 /* ItemTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC970696238CF193007F4A17 /* ItemTVCell.xib */; };
+		CC970699238CFB1A007F4A17 /* ImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC970698238CFB1A007F4A17 /* ImageGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		CC3C7A0B2387A59200490112 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CC970692238CEC2F007F4A17 /* ItemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTVCell.swift; sourceTree = "<group>"; };
 		CC970696238CF193007F4A17 /* ItemTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTVCell.xib; sourceTree = "<group>"; };
+		CC970698238CFB1A007F4A17 /* ImageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				CC3C79F0238799DB00490112 /* CollectorTests.swift */,
+				CC970698238CFB1A007F4A17 /* ImageGenerator.swift */,
 				CC3C79F2238799DB00490112 /* Info.plist */,
 			);
 			path = CollectorTests;
@@ -294,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3C79F1238799DB00490112 /* CollectorTests.swift in Sources */,
+				CC970699238CFB1A007F4A17 /* ImageGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
